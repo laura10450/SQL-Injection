@@ -27,13 +27,18 @@ class Form1(Form1Template):
     password = self.passwort.text
     
     # Server-Aufruf zur Authentifizierung
-    result = anvil.server.call('secure_login', username, password)
+    try:
+      result = anvil.server.call('secure_login', username, password)
+      
+      if result:
+        # Erfolg: Benutzername und Kontostand anzeigen
+        self.ausgabe_label.text = f"Willkommen, {result['username']}!\nKontostand: {result['balance']} €"
+        self.ausgabe_label.foreground = "green"
+      else:
+        # Fehler: Meldung anzeigen
+        self.ausgabe_label.text = "Login fehlgeschlagen. Überprüfen Sie Ihre Eingaben."
+        self.ausgabe_label.foreground = "red"
     
-    if result:
-      # Erfolg: Benutzername und Kontostand anzeigen
-      self.ausgabe_label.text = f"Willkommen, {username}!\nKontostand: {result['balance']} €"
-      self.ausgabe_label.foreground = "green"
-    else:
-      # Fehler: Meldung anzeigen
-      self.ausgabe_label.text = "Login fehlgeschlagen. Überprüfen Sie Ihre Eingaben."
-      self.ausgabe_label.foreground = "red"
+    except anvil.server.AnvilError as e:
+      alert(f"Server Error: {e}")
+
