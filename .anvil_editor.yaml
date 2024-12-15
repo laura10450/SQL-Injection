@@ -1,9 +1,11 @@
 unique_ids:
   assets:
+    secure_database_with_balances.db: '1734229089823411405773383.8661'
     standard-page.html: 6HGPM7WXHXKVFJSQVV5IPAXPVHXLTGYD
     theme.css: TWF3IDTZAQIRDUIJ6ZQCJYHHZ3XSIVQM
   forms:
     Form1: TLSP5WIRBPDL5RXTEKDIXOSRYFU5OXCE
   modules: {}
   scripts: {}
-  server_modules: {}
+  server_modules:
+    ServerModule1: '173422856192738041038370.08399'
