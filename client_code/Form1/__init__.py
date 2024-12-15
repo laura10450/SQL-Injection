@@ -41,4 +41,3 @@ class Form1(Form1Template):
     
     except anvil.server.AnvilError as e:
       alert(f"Server Error: {e}")
-

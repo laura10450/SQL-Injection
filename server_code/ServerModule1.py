@@ -4,19 +4,16 @@ import anvil.server
 @anvil.server.callable
 def secure_login(username, password):
     """
-    Sichere Login-Funktion, die die SQLite-Datenbank im Arbeitsspeicher verwendet.
+    Sichere Login-Funktion, die die SQLite-Datenbank verwendet.
     """
     try:
-        # Datei aus dem Assets-Bereich laden
-        with open("_/secure_database_with_balances_fixed.db", "rb") as db_file:
-            db_bytes = db_file.read()
+        # Lokalen Pfad zur hochgeladenen Datei verwenden
+        db_path = "/_/secure_database_with_balances.db"
 
-        # Verbindung zur In-Memory-Datenbank herstellen
-        conn = sqlite3.connect(":memory:")
+
+        # Verbindung zur Datenbank herstellen
+        conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
-
-        # Datenbank in den Arbeitsspeicher laden
-        conn.executescript(db_bytes.decode("utf-8"))
 
         # SQL-Abfrage ausführen
         cursor.execute("""
