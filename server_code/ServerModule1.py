@@ -12,15 +12,15 @@ def secure_login(username, password):
     Sichere Login-Funktion, die die SQLite-Datenbank verwendet.
     """
     try:
-        # Lokalen Pfad zur hochgeladenen Datei verwenden
+
         db_path = "/_/secure_database_with_balances.db"
 
 
-        # Verbindung zur Datenbank herstellen
+
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
 
-        # SQL-Abfrage ausführen
+
         cursor.execute("""
             SELECT username, balance
             FROM users
